@@ -41,7 +41,29 @@ function App() {
         />
       </TodoHeader>
 
-      <TodoList>
+      {/* RENDER PROPS */}
+
+      <TodoList
+        error={error}
+        loading={loading}
+        searchedTodos = {searchedTodos}
+        onError = {() => <p>Desespérate, hubo un error...</p>}
+        onLoading = {() => <p>Estamos cargando, no desesperes...</p>}
+        onEmptyTodos = {() => <p>¡Crea tu primer TODO!</p>}
+        render={(todo) => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />)}
+      
+      />
+
+
+
+      {/* <TodoList>
         {error && <p>Desespérate, hubo un error...</p>}
         {loading && <p>Estamos cargando, no desesperes...</p>}
         {!loading && !searchedTodos.length && <p>¡Crea tu primer TODO!</p>}
@@ -55,7 +77,7 @@ function App() {
             onDelete={() => deleteTodo(todo.text)}
           />
         ))}
-      </TodoList>
+      </TodoList> */}
 
       {!!openModal && (
         <Modal>
